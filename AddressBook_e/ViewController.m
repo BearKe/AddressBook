@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "FMDatabase.h"
+#import "FMDB.h"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -23,22 +24,6 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
-    
-    //数据库测试 
-    
-    NSString* docsdir = [NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString* dbpath = [docsdir stringByAppendingPathComponent:@"AppConfig.sqlite"];
-    FMDatabase* db = [FMDatabase databaseWithPath:dbpath];
-    [db open];
-    FMResultSet *rs = [db executeQuery:@"select * from MemberInfo"];
-    while ([rs next]) {
-        NSLog(@"%@",[rs stringForColumn:@"memberName"]);
-    }
-    [db close];
-    
-    
-    
-    
     
     
     [super viewDidLoad];
@@ -63,35 +48,58 @@
         
     }
     
-    [self setNavTitle];
+ //   [self setNavTitle];
     
-    [self setNavBtn];
+ //   [self setNavBtn];
     
     [self.view addSubview:self.tableView];
     
     [self.tableView reloadData];
     
+    UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 64)];
+    // UIButton * tempButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    
+    UINavigationItem * navTitle = [[UINavigationItem alloc] init];
+    navTitle.title = @"Title";
+    
+    //[tempButton addTarget:self action:@selector(infoButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    
+   // UIBarButtonItem * infoButton = [[UIBarButtonItem alloc] initWithCustomView:tempButton];
+    //-----
+    UIBarButtonItem *rBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add)];
+    self.navigationItem.rightBarButtonItem = rBtn;
+    
+    //In this case your button will be on the right side
+    navTitle.rightBarButtonItem = rBtn;
+    
+    //Add NavigationBar on main view
+    navBar.items = @[navTitle];
+    [self.view addSubview:navBar];
+    
     
 }
 
+
 #pragma mark - 设置导航栏标题
+/*
 -(void)setNavTitle{
     
-    [self.navigationItem setTitle:@"addressBook"];
+    self.title = @"addressBook";
 }
 
 - (void)setNavBtn{
     
+    
     UIBarButtonItem *rBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add)];
     self.navigationItem.rightBarButtonItem = rBtn;
+    
 }
-
+*/
 - (void)add{
     [self.Array insertObject:@"add" atIndex:0];
     [[NSUserDefaults standardUserDefaults] setObject:self.Array forKey:@"Array"];
     [self.tableView reloadData];
 }
-
 
 
 
@@ -140,6 +148,7 @@
     
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    
     
     [alertController addAction:okAction];
     [alertController addAction:cancelAction];

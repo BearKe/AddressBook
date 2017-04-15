@@ -569,6 +569,7 @@
 				8A68EF111E9F8AC7003DA8E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8A68EF121E9F8AC7003DA8E7 /* Build configuration list for PBXNativeTarget "AddressBook_eTests" */ = {
 			isa = XCConfigurationList;
@@ -577,6 +578,7 @@
 				8A68EF141E9F8AC7003DA8E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8A68EF151E9F8AC7003DA8E7 /* Build configuration list for PBXNativeTarget "AddressBook_eUITests" */ = {
 			isa = XCConfigurationList;
@@ -585,6 +587,7 @@
 				8A68EF171E9F8AC7003DA8E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

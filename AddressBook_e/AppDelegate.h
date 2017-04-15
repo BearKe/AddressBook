@@ -15,6 +15,10 @@
 
 @property (readonly, strong) NSPersistentContainer *persistentContainer;
 
+@property (strong, nonatomic) UINavigationController *navController;
+
+@property (strong, nonatomic) UIViewController *ViewController;
+
 - (void)saveContext;
 
 
